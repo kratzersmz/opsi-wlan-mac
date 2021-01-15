@@ -15,7 +15,7 @@ clients = backend.host_getObjects(type="OpsiClient")
 
 print('You need to have the opsi product hwaudit installed on the client to make this work!')
 print('Please check if \'ssh root@server.paedml-linux.lokal\' is working from backup without errors!')
-print('Starting with getting macs an filling server entries.....')
+raw_input('Press enter if you read info above and start the script.....')
 
 for client in clients:
   # checking 1
