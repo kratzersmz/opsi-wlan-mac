@@ -5,6 +5,9 @@ This scripts from opsi hardware database the networkcontrollers description. If 
 
 ## HowTo run
 ssh to opsi server (backup)
+
 git clone https://github.com/kratzersmz/opsi-wlan-mac.git
+
 cd opsi-wlan-mc
+
 python wlan-mac-adding.py
