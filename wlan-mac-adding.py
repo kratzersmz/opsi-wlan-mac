@@ -38,7 +38,8 @@ for client in clients:
   if res:
     continue
   ak =  backend.getHardwareInformation_hash(client.id)
-  for networkcontroller in ak[u'NETWORK_CONTROLLER']:
+  try:
+    for networkcontroller in ak[u'NETWORK_CONTROLLER']:
       if 'wireless' in networkcontroller[u'description'].lower():
           # check if second mac is already in allHosts
           clientName = client.id.split('.')
@@ -48,5 +49,8 @@ for client in clients:
             sshCommandFirst = 'ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -o LogLevel=quiet root@server.paedml-linux.lokal \'udm computers/windows modify --dn=cn=' + clientName[0] + ',cn=computers,ou=schule,dc=paedml-linux,dc=lokal --append mac='+  networkcontroller[u'macAddress'] + ' --append "dhcpEntryZone=cn=schule,cn=dhcp,ou=schule,dc=paedml-linux,dc=lokal '+ hashClient[0]['ipAddress'] +' ' + networkcontroller[u'macAddress'] +'"\''
             os.system(sshCommandFirst)
             time.sleep(2)
+  except:
+      print("No Networkcontroller")
+      continue
 
 print('End of filling wlan macs on server...')
