@@ -50,7 +50,7 @@ for client in clients:
             os.system(sshCommandFirst)
             time.sleep(2)
   except:
-      print("No Networkcontroller")
+      print("No Networkcontroller found on "+ client.id)
       continue
 
 print('End of filling wlan macs on server...')
