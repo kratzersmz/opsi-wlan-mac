@@ -49,6 +49,8 @@ for client in clients:
             sshCommandFirst = 'ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -o LogLevel=quiet root@server.paedml-linux.lokal \'udm computers/windows modify --dn=cn=' + clientName[0] + ',cn=computers,ou=schule,dc=paedml-linux,dc=lokal --append mac='+  networkcontroller[u'macAddress'] + ' --append "dhcpEntryZone=cn=schule,cn=dhcp,ou=schule,dc=paedml-linux,dc=lokal '+ hashClient[0]['ipAddress'] +' ' + networkcontroller[u'macAddress'] +'"\''
             os.system(sshCommandFirst)
             time.sleep(2)
+          else:
+            print(client.id + " has already 2 macs, nothing to do!")
   except:
       print("No Networkcontroller found on "+ client.id)
       continue
